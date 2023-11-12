@@ -16,7 +16,7 @@
             android:name=".ActivityRight"
             android:exported="false" />
         <activity
-            android:name=".activityRed"
+            android:name=".ActivityLeft"
             android:exported="false"
             android:theme="@style/AppThemeRed" />
         <activity
