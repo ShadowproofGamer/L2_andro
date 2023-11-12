@@ -22,7 +22,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
-        android:layout_height="463dp">
+        android:layout_height="wrap_content">
 
         <Button
             android:id="@+id/button1"
@@ -59,6 +59,28 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/button2" />
+
+        <Button
+            android:id="@+id/buttonMLeft"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="60dp"
+            android:layout_marginTop="150dp"
+            android:text="@string/buttonToLeft_str"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/button3" />
+
+        <Button
+            android:id="@+id/buttonMRight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="39dp"
+            android:layout_marginTop="150dp"
+            android:layout_marginEnd="60dp"
+            android:text="@string/buttonToRight_str"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/buttonMLeft"
+            app:layout_constraintTop_toBottomOf="@+id/button3" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
