@@ -7,15 +7,19 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Button
+import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import com.example.l2_andro.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
-    lateinit var button1: Button
-    lateinit var button2: Button
-    lateinit var button3: Button
+    //lateinit var button1: Button
+    //lateinit var button2: Button
+    //lateinit var button3: Button
     lateinit var toolbar1: Toolbar
+    lateinit var menui1: MenuItem
+    lateinit var menui2: MenuItem
+    lateinit var menui3: MenuItem
 
     //fun OnCreateOptionsMenu(menu: Menu!):Boolean
     fun applyTheme() {
@@ -40,34 +44,30 @@ class MainActivity : AppCompatActivity() {
         menuInflater.inflate(R.menu.app_menu, menu)
         return true
     }
-
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        Toast.makeText(this, "Clicked!", Toast.LENGTH_SHORT).show()
         return when (item.itemId) {
             R.id.mi0 -> {
                 setPrefs(0)
                 recreate()
                 true
             }
-
             R.id.mi1 -> {
                 setPrefs(1)
                 recreate()
                 true
             }
-
             R.id.mi2 -> {
                 setPrefs(2)
                 recreate()
                 true
             }
-
             R.id.mi3 -> {
                 setPrefs(3)
                 recreate()
                 true
             }
-
-            else -> super.onContextItemSelected(item)
+            else -> super.onOptionsItemSelected(item)
         }
     }
 
@@ -82,7 +82,7 @@ class MainActivity : AppCompatActivity() {
         toolbar1 = binding.toolbar1
         setSupportActionBar(toolbar1)
 
-        //onCreateOptionsMenu(toolbar1)
+
 
         /*
         button1 = binding.button1
