@@ -13,8 +13,11 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.Button
 import android.widget.Toast
+import androidx.appcompat.widget.ButtonBarLayout
 import androidx.appcompat.widget.Toolbar
+import androidx.core.view.children
 import com.example.l2_andro.databinding.ActivityMainBinding
+import kotlinx.coroutines.delay
 
 class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
@@ -22,6 +25,13 @@ class MainActivity : AppCompatActivity() {
     lateinit var button2: Button
     //lateinit var button3: Button
     lateinit var toolbar1: Toolbar
+    companion object {
+        var tsize: Float = 16F
+        var tface: Int = Typeface.NORMAL
+        var checkedBold: Boolean = false
+        var checkedItalic: Boolean = false
+    }
+
 
     //fun OnCreateOptionsMenu(menu: Menu!):Boolean
     fun applyTheme() {
@@ -73,11 +83,13 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    override fun onCreateContextMenu(ctxmenu: ContextMenu, myview:View, ctxmi: ContextMenuInfo){
+    override fun onCreateContextMenu(ctxmenu: ContextMenu, myview:View, ctxmi: ContextMenuInfo?){
         when(myview){
             button1 -> menuInflater.inflate(R.menu.cm_fontsize, ctxmenu)
-            button2 -> menuInflater.inflate(R.menu.cm_fonttype, ctxmenu)
-            else -> menuInflater.inflate(R.menu.cm_fonttype, ctxmenu)
+            button2 -> {
+                menuInflater.inflate(R.menu.cm_fonttype, ctxmenu)
+
+            }
         }
     }
 
@@ -85,17 +97,20 @@ class MainActivity : AppCompatActivity() {
         return when (item.itemId) {
             R.id.ch_size1 -> {
                 button1.textSize = 20F
-                recreate()
+                tsize = 20F
+                //recreate()
                 true
             }
             R.id.ch_size2 -> {
                 button1.textSize = 22F
-                recreate()
+                tsize = 22F
+                //recreate()
                 true
             }
             R.id.ch_size3 -> {
                 button1.textSize = 24F
-                recreate()
+                tsize = 24F
+                //recreate()
                 true
             }
             /*
@@ -106,14 +121,25 @@ class MainActivity : AppCompatActivity() {
             }
              */
             R.id.ch_type2 -> {
-                item.isChecked = !item.isChecked
-                button1.setTypeface(null, Typeface.ITALIC)
+                checkedItalic = !checkedItalic
+                item.isChecked = checkedItalic
+                //button2.setTypeface(null, Typeface.ITALIC)
+                tface = if (checkedItalic && checkedBold) Typeface.BOLD_ITALIC
+                else if (checkedItalic) Typeface.ITALIC
+                else if (checkedBold) Typeface.BOLD
+                else Typeface.NORMAL
                 recreate()
                 true
             }
             R.id.ch_type3 -> {
+                checkedBold = !checkedBold
+                item.isChecked = checkedBold
                 item.isChecked = !item.isChecked
-                button2.setTypeface(null, Typeface.BOLD)
+                //button2.setTypeface(null, Typeface.BOLD)
+                tface = if (checkedItalic && checkedBold) Typeface.BOLD_ITALIC
+                else if (checkedItalic) Typeface.ITALIC
+                else if (checkedBold) Typeface.BOLD
+                else Typeface.NORMAL
                 recreate()
                 true
             }
@@ -133,9 +159,11 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(toolbar1)
 
         button1 = binding.button1
+        button1.textSize = tsize
         registerForContextMenu(button1)
 
         button2 = binding.button2
+        button2.setTypeface(null, tface)
         registerForContextMenu(button2)
 
 
