@@ -17,9 +17,9 @@ class MainActivity : AppCompatActivity() {
     //lateinit var button2: Button
     //lateinit var button3: Button
     lateinit var toolbar1: Toolbar
-    lateinit var menui1: MenuItem
-    lateinit var menui2: MenuItem
-    lateinit var menui3: MenuItem
+    //lateinit var menui1: MenuItem
+    //lateinit var menui2: MenuItem
+    //lateinit var menui3: MenuItem
 
     //fun OnCreateOptionsMenu(menu: Menu!):Boolean
     fun applyTheme() {
@@ -74,14 +74,14 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         applyTheme()
+
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        setContentView(R.layout.activity_main)
+
 
         toolbar1 = binding.toolbar1
         setSupportActionBar(toolbar1)
-
 
 
         /*
