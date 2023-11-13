@@ -2,10 +2,15 @@ package com.example.l2_andro
 
 import android.content.Context
 import android.content.SharedPreferences
+import android.graphics.Typeface
+import android.graphics.Typeface.ITALIC
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.ContextMenu
+import android.view.ContextMenu.ContextMenuInfo
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
@@ -13,13 +18,10 @@ import com.example.l2_andro.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
-    //lateinit var button1: Button
-    //lateinit var button2: Button
+    lateinit var button1: Button
+    lateinit var button2: Button
     //lateinit var button3: Button
     lateinit var toolbar1: Toolbar
-    //lateinit var menui1: MenuItem
-    //lateinit var menui2: MenuItem
-    //lateinit var menui3: MenuItem
 
     //fun OnCreateOptionsMenu(menu: Menu!):Boolean
     fun applyTheme() {
@@ -71,6 +73,53 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    override fun onCreateContextMenu(ctxmenu: ContextMenu, myview:View, ctxmi: ContextMenuInfo){
+        when(myview){
+            button1 -> menuInflater.inflate(R.menu.cm_fontsize, ctxmenu)
+            button2 -> menuInflater.inflate(R.menu.cm_fonttype, ctxmenu)
+            else -> menuInflater.inflate(R.menu.cm_fonttype, ctxmenu)
+        }
+    }
+
+    override fun onContextItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.ch_size1 -> {
+                button1.textSize = 20F
+                recreate()
+                true
+            }
+            R.id.ch_size2 -> {
+                button1.textSize = 22F
+                recreate()
+                true
+            }
+            R.id.ch_size3 -> {
+                button1.textSize = 24F
+                recreate()
+                true
+            }
+            /*
+            R.id.ch_type1 -> {
+                //
+                recreate()
+                true
+            }
+             */
+            R.id.ch_type2 -> {
+                item.isChecked = !item.isChecked
+                button1.setTypeface(null, Typeface.ITALIC)
+                recreate()
+                true
+            }
+            R.id.ch_type3 -> {
+                item.isChecked = !item.isChecked
+                button2.setTypeface(null, Typeface.BOLD)
+                recreate()
+                true
+            }
+            else -> super.onContextItemSelected(item)
+        }
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         applyTheme()
@@ -82,6 +131,13 @@ class MainActivity : AppCompatActivity() {
 
         toolbar1 = binding.toolbar1
         setSupportActionBar(toolbar1)
+
+        button1 = binding.button1
+        registerForContextMenu(button1)
+
+        button2 = binding.button2
+        registerForContextMenu(button2)
+
 
 
         /*

@@ -6,6 +6,14 @@
     <string name="changer0_str">Default Theme</string>
     <string name="buttonToLeft_str">Left activity</string>
     <string name="buttonToRight_str">Right activity</string>
-
+    <string name="button_size">Font Size</string>
+    <string name="button_type">Font Type</string>
+    <string name="button_other">other</string>
+    <string name="ch_size1">20</string>
+    <string name="ch_size2">22</string>
+    <string name="ch_size3">24</string>
+    <string name="ch_type1">normal</string>
+    <string name="ch_type2">italic</string>
+    <string name="ch_type3">bold</string>
 
 </resources>
