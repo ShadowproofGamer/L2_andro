@@ -15,5 +15,17 @@
     <string name="ch_type1">normal</string>
     <string name="ch_type2">italic</string>
     <string name="ch_type3">bold</string>
+    <string name="con_ch1">red</string>
+    <string name="con_ch2">green</string>
+    <string name="con_ch3">brown</string>
+    <string name="pers_data">Personal data</string>
+    <string name="pref_color">Preferred color</string>
+    <string name="con_color">Color</string>
+    <string name="con_br">Birth date</string>
+    <string name="con_br_date">dd-mm-yyyy</string>
+    <string name="back_button">Back</string>
+
+
+
 
 </resources>

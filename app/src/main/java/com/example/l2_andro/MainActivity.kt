@@ -1,6 +1,7 @@
 package com.example.l2_andro
 
 import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
 import android.graphics.Typeface
 import android.graphics.Typeface.ITALIC
@@ -25,6 +26,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var button2: Button
     //lateinit var button3: Button
     lateinit var toolbar1: Toolbar
+    lateinit var buttonRight: Button
     companion object {
         var tsize: Float = 16F
         var tface: Int = Typeface.NORMAL
@@ -50,7 +52,6 @@ class MainActivity : AppCompatActivity() {
         val editor = data.edit()
         editor.putInt("theme_color", themeNum)
         editor.apply()
-
     }
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.app_menu, menu)
@@ -88,7 +89,8 @@ class MainActivity : AppCompatActivity() {
             button1 -> menuInflater.inflate(R.menu.cm_fontsize, ctxmenu)
             button2 -> {
                 menuInflater.inflate(R.menu.cm_fonttype, ctxmenu)
-
+                ctxmenu.findItem(R.id.ch_type2)?.isChecked = checkedItalic
+                ctxmenu.findItem(R.id.ch_type3)?.isChecked = checkedBold
             }
         }
     }
@@ -166,32 +168,10 @@ class MainActivity : AppCompatActivity() {
         button2.setTypeface(null, tface)
         registerForContextMenu(button2)
 
-
-
-        /*
-        button1 = binding.button1
-        button1.setOnClickListener { _ ->
-            setPrefs(1)
-            recreate()
+        buttonRight = binding.buttonMRight
+        buttonRight.setOnClickListener { _ ->
+            val myIntent = Intent(this, ActivityRight::class.java)
+            startActivity(myIntent)
         }
-
-        button2 = binding.button2
-        button2.setOnClickListener { _ ->
-            setPrefs(2)
-            recreate()
-        }
-
-        button3 = binding.button3
-        button3.setOnClickListener { _ ->
-            setPrefs(3)
-            recreate()
-        }
-
-         */
-
-
-
     }
-
-
 }
