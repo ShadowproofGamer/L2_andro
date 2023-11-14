@@ -1,0 +1,31 @@
+<resources>
+    <string name="app_name">L2_andro</string>
+    <string name="changer1_str">Red Theme</string>
+    <string name="changer2_str">Green Theme</string>
+    <string name="changer3_str">Brown Theme</string>
+    <string name="changer0_str">Default Theme</string>
+    <string name="buttonToLeft_str">Left activity</string>
+    <string name="buttonToRight_str">Right activity</string>
+    <string name="button_size">Font Size</string>
+    <string name="button_type">Font Type</string>
+    <string name="button_other">other</string>
+    <string name="ch_size1">Size 20</string>
+    <string name="ch_size2">Size 22</string>
+    <string name="ch_size3">Size 24</string>
+    <string name="ch_type1">normal</string>
+    <string name="ch_type2">Italic</string>
+    <string name="ch_type3">Bold</string>
+    <string name="con_ch1">red</string>
+    <string name="con_ch2">green</string>
+    <string name="con_ch3">brown</string>
+    <string name="pers_data">Personal data</string>
+    <string name="pref_color">Preferred color</string>
+    <string name="con_color">Color</string>
+    <string name="con_br">Birth date</string>
+    <string name="con_br_date">dd-mm-yyyy</string>
+    <string name="back_button">Back</string>
+    <string name="poor">Poor</string>
+    <string name="moderate">Moderate</string>
+    <string name="good">Good</string>
+
+</resources>

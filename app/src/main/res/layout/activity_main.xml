@@ -64,7 +64,7 @@
             android:id="@+id/buttonMLeft"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="60dp"
+            android:layout_marginStart="35dp"
             android:layout_marginTop="462dp"
             android:text="@string/buttonToLeft_str"
             app:layout_constraintStart_toStartOf="parent"

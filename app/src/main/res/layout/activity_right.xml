@@ -48,7 +48,7 @@
             android:id="@+id/con_color1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="101dp"
+            android:layout_marginStart="80dp"
             android:layout_marginTop="250dp"
             android:layout_marginEnd="116dp"
             android:text="@string/con_color"

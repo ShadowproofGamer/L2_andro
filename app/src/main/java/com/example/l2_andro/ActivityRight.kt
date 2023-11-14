@@ -5,6 +5,7 @@ import android.app.DatePickerDialog
 import android.content.Context
 import android.content.SharedPreferences
 import android.graphics.Color
+import android.graphics.Typeface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.ActionMode
@@ -14,6 +15,7 @@ import android.view.View
 import android.widget.TextView
 import android.widget.Toolbar
 import com.example.l2_andro.databinding.ActivityRightBinding
+import java.lang.reflect.Array
 import java.util.Calendar
 
 class ActivityRight : AppCompatActivity() {
@@ -34,6 +36,7 @@ class ActivityRight : AppCompatActivity() {
             3 -> setTheme(R.style.AppThemeGrey)
             else -> setTheme(R.style.Theme_L2_andro)
         }
+
     }
 
     fun applyBGColor() {
@@ -76,6 +79,18 @@ class ActivityRight : AppCompatActivity() {
         return when (item.itemId) {
             R.id.mi0 -> {
                 setPrefs(0)
+                MainActivity.tsize = 14F
+                MainActivity.tface = Typeface.NORMAL
+                MainActivity.checkedBold = false
+                MainActivity.checkedItalic = false
+                recreate()
+                true
+            }
+            R.id.miRes -> {
+                MainActivity.tsize = 14F
+                MainActivity.tface = Typeface.NORMAL
+                MainActivity.checkedBold = false
+                MainActivity.checkedItalic = false
                 recreate()
                 true
             }
@@ -101,18 +116,18 @@ class ActivityRight : AppCompatActivity() {
     val myAMCallback: ActionMode.Callback = object: ActionMode.Callback {
         override fun onCreateActionMode(mode: ActionMode?, menu: Menu?): Boolean {
             menuInflater.inflate(R.menu.cam_view, menu)
-            supportActionBar?.hide()
+
             return true
         }
 
         override fun onPrepareActionMode(mode: ActionMode?, menu: Menu?): Boolean {
-            //TODO("Can be empty as we do not need it now")
+            //nic nie robimy
             return true
         }
 
         override fun onDestroyActionMode(mode: ActionMode?) {
-            supportActionBar?.show()
             myAM = null
+
         }
 
         override fun onActionItemClicked(mode: ActionMode, item: MenuItem): Boolean {
@@ -197,9 +212,21 @@ class ActivityRight : AppCompatActivity() {
         val backButton = binding.backButton
         backButton.setOnClickListener { _ ->
             val builder: AlertDialog.Builder = AlertDialog.Builder(this)
+            //val array:Array<CharSequence> = [findViewById(R.string.poor.toString()) , R.string.moderate.toString(), R.string.good.toString()]
+            /*
+            val poor = getString(R.string.poor)
+            optionsT[0] = poor
+            val moderate = getString(R.string.moderate)
+            optionsT[1] = moderate
+            val good = getString(R.string.good)
+            optionsT[2] = good
+
+
+             */
             builder
                 .setTitle("Go Back Dialog")
                 .setMessage("Are you sure at 100% ?")
+                //.setSingleChoiceItems()
                 .setPositiveButton("Accept") { dialog, which ->
                     onBackPressed()
                 }.setNegativeButton("Cancel") { dialog, which ->

@@ -28,7 +28,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var toolbar1: Toolbar
     lateinit var buttonRight: Button
     companion object {
-        var tsize: Float = 16F
+        var tsize: Float = 14F
         var tface: Int = Typeface.NORMAL
         var checkedBold: Boolean = false
         var checkedItalic: Boolean = false
@@ -37,7 +37,7 @@ class MainActivity : AppCompatActivity() {
 
     //fun OnCreateOptionsMenu(menu: Menu!):Boolean
     fun applyTheme() {
-        val data: SharedPreferences = getSharedPreferences("my_prefs", Context.MODE_PRIVATE)
+        var data: SharedPreferences = getSharedPreferences("my_prefs", Context.MODE_PRIVATE)
         var themeNum = data.getInt("theme_color", 0)
         when (themeNum) {
             1 -> setTheme(R.style.AppThemeRed)
@@ -45,6 +45,7 @@ class MainActivity : AppCompatActivity() {
             3 -> setTheme(R.style.AppThemeGrey)
             else -> setTheme(R.style.Theme_L2_andro)
         }
+            //theme.applyStyle(R.style.Theme_L2_andro, true)
     }
 
     fun setPrefs(themeNum: Int) {
@@ -62,6 +63,14 @@ class MainActivity : AppCompatActivity() {
         return when (item.itemId) {
             R.id.mi0 -> {
                 setPrefs(0)
+                recreate()
+                true
+            }
+            R.id.miRes -> {
+                tsize = 14F
+                tface = Typeface.NORMAL
+                checkedBold = false
+                checkedItalic = false
                 recreate()
                 true
             }
@@ -172,6 +181,11 @@ class MainActivity : AppCompatActivity() {
         buttonRight.setOnClickListener { _ ->
             val myIntent = Intent(this, ActivityRight::class.java)
             startActivity(myIntent)
+
         }
+    }
+    override fun onRestart() {
+        super.onRestart()
+        recreate()
     }
 }
