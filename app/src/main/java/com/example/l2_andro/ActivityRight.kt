@@ -12,6 +12,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.TextView
+import android.widget.Toolbar
 import com.example.l2_andro.databinding.ActivityRightBinding
 import java.util.Calendar
 
@@ -22,6 +23,7 @@ class ActivityRight : AppCompatActivity() {
     lateinit var conPref1: TextView
     lateinit var conBirth: TextView
     lateinit var conBirthDate: TextView
+    lateinit var toolbar1: androidx.appcompat.widget.Toolbar
 
     fun applyTheme() {
         val data: SharedPreferences = getSharedPreferences("my_prefs", Context.MODE_PRIVATE)
@@ -45,6 +47,18 @@ class ActivityRight : AppCompatActivity() {
         val editor = data.edit()
         editor.putInt("bg_color", colorNum)
         editor.apply()
+    }
+
+    fun setPrefDate(dateText: String) {
+        val data: SharedPreferences = getSharedPreferences("my_prefs", Context.MODE_PRIVATE)
+        val editor = data.edit()
+        editor.putString("con_date", dateText)
+        editor.apply()
+    }
+    fun applyDateText() {
+        val data: SharedPreferences = getSharedPreferences("my_prefs", Context.MODE_PRIVATE)
+        var date = data.getString("con_date", null)
+        conBirthDate.text = date
     }
     fun setPrefs(themeNum: Int) {
         val data: SharedPreferences = getSharedPreferences("my_prefs", Context.MODE_PRIVATE)
@@ -87,6 +101,7 @@ class ActivityRight : AppCompatActivity() {
     val myAMCallback: ActionMode.Callback = object: ActionMode.Callback {
         override fun onCreateActionMode(mode: ActionMode?, menu: Menu?): Boolean {
             menuInflater.inflate(R.menu.cam_view, menu)
+            supportActionBar?.hide()
             return true
         }
 
@@ -96,6 +111,7 @@ class ActivityRight : AppCompatActivity() {
         }
 
         override fun onDestroyActionMode(mode: ActionMode?) {
+            supportActionBar?.show()
             myAM = null
         }
 
@@ -131,6 +147,7 @@ class ActivityRight : AppCompatActivity() {
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        applyTheme()
         //setContentView(R.layout.activity_right)
 
         binding = ActivityRightBinding.inflate(layoutInflater)
@@ -148,13 +165,15 @@ class ActivityRight : AppCompatActivity() {
             true
         })
 
-        setSupportActionBar(binding.toolbar1)
+        toolbar1 = binding.toolbar1
+        setSupportActionBar(toolbar1)
 
-        applyTheme()
+
         applyBGColor()
 
         conBirth = binding.conBr
         conBirthDate = binding.conBrDate
+        applyDateText()
         conBirthDate.setOnClickListener { _ ->
             val cal = Calendar.getInstance()
             val year = cal.get(Calendar.YEAR)
@@ -165,7 +184,9 @@ class ActivityRight : AppCompatActivity() {
                 {view, year, monthOfYear, dayOfMonth ->
                     val currCal = Calendar.getInstance()
                     currCal.set(year, monthOfYear, dayOfMonth)
-                    conBirthDate.text = (dayOfMonth.toString() + "-" + (monthOfYear+1) + "-" + year)
+                    var tempDate = (dayOfMonth.toString() + "-" + (monthOfYear+1) + "-" + year)
+                    conBirthDate.text = tempDate
+                    setPrefDate(tempDate)
                 },
                 year,
                 month,
