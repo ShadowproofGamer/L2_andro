@@ -79,10 +79,6 @@ class ActivityRight : AppCompatActivity() {
         return when (item.itemId) {
             R.id.mi0 -> {
                 setPrefs(0)
-                MainActivity.tsize = 14F
-                MainActivity.tface = Typeface.NORMAL
-                MainActivity.checkedBold = false
-                MainActivity.checkedItalic = false
                 recreate()
                 true
             }
